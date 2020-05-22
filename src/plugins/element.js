@@ -1,5 +1,27 @@
 import Vue from 'vue'
-import Element from 'element-ui'
 import '../styles/element-variables.scss'
+import {
+  Menu,
+  Submenu,
+  MenuItem,
+  MenuItemGroup,
+  Breadcrumb,
+  BreadcrumbItem,
+  Icon,
+  Container,
+  Header,
+  Aside,
+  Main
+} from 'element-ui'
 
-Vue.use(Element)
+Vue.use(Menu)
+Vue.use(Submenu)
+Vue.use(MenuItem)
+Vue.use(MenuItemGroup)
+Vue.use(Breadcrumb)
+Vue.use(BreadcrumbItem)
+Vue.use(Icon)
+Vue.use(Container)
+Vue.use(Header)
+Vue.use(Aside)
+Vue.use(Main)
