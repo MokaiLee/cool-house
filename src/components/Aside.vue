@@ -5,8 +5,8 @@
             class="el-menu-vertical-demo"
             @open="handleOpen"
             @close="handleClose"
-            background-color="#545c64"
-            text-color="#fff"
+            background-color="#d1d1d1"
+            text-color="#4b4c4e"
             active-text-color="#c7000b"
             :collapse="isCollapse">
       <el-submenu index="1">

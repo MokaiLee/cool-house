@@ -11,7 +11,9 @@ import {
   Container,
   Header,
   Aside,
-  Main
+  Main,
+  Avatar,
+  Tooltip
 } from 'element-ui'
 
 Vue.use(Menu)
@@ -25,3 +27,5 @@ Vue.use(Container)
 Vue.use(Header)
 Vue.use(Aside)
 Vue.use(Main)
+Vue.use(Avatar)
+Vue.use(Tooltip)

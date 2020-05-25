@@ -7,3 +7,11 @@
   padding-left: 0;
   background-color: #FFFFFF;
 }
+
+.el-submenu__title i {
+  color: #4b4c4e;
+}
+
+.el-menu-item i {
+  color: #4b4c4e;
+}

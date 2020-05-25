@@ -1,7 +1,6 @@
 <template>
-  <div class="my-header">
-    <div id="logo">
-      <i class="el-icon-basketball" style="line-height: 60px"></i>
+  <div class="header-wrapper">
+    <div class="logo">
       <span>{{title}}</span>
     </div>
     <el-menu
@@ -10,7 +9,7 @@
             mode="horizontal"
             @select="handleSelect"
             background-color="#545c64"
-            text-color="#fff"
+            text-color="#d1d1d1"
             active-text-color="#c7000b">
       <el-menu-item index="1">处理中心</el-menu-item>
       <el-submenu index="2">
@@ -29,8 +28,20 @@
       <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
     </el-menu>
     <div class="user-info">
-      <i class="el-icon-user"></i>
-      <span>管理员</span>
+      <div class="user-avatar user-info-item">
+        <el-avatar size="small" icon="el-icon-user-solid"></el-avatar>
+      </div>
+      <div class="user-name user-info-item">
+        <span>{{userName}}</span>
+      </div>
+      <div class="user-logout user-info-item">
+        <el-tooltip content="退出">
+          <i class="el-icon-switch-button"></i>
+        </el-tooltip>
+      </div>
+      <div class="user-info-item">
+        <i class="el-icon-more"></i>
+      </div>
     </div>
   </div>
 </template>
@@ -43,7 +54,8 @@
     },
     data() {
       return {
-        activeIndex2: '1'
+        activeIndex2: '1',
+        userName: '管理员'
       }
     },
     methods: {
@@ -54,20 +66,38 @@
   }
 </script>
 
-<style scoped>
-  #logo {
-    width: 200px;
-    color: #c7000b;
-    font-size: 30px;
-  }
-  .my-header {
+<style lang="scss" scoped>
+  .header-wrapper {
+    color: #d1d1d1;
     height: 60px;
     display: flex;
     flex-direction: row;
   }
+
+  .logo {
+    width: 200px;
+    font-size: 30px;
+    line-height: 60px;
+  }
+
   .user-info {
     margin-left: auto;
-    color: #fff;
-    line-height: 60px;
+    display: flex;
+    padding: 16px 0;
+  }
+
+  .user-info-item {
+    margin-right: 15px;
+    cursor: pointer;
+    span,i {
+      line-height: 28px;
+    }
+    i {
+      font-weight: bold;
+    }
+  }
+
+  .user-logout:hover {
+    color: #c7000b;
   }
 </style>
