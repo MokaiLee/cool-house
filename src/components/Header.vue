@@ -4,6 +4,7 @@
       <span>{{title}}</span>
     </div>
     <el-menu
+            router
             :default-active="activeIndex2"
             class="el-menu-demo"
             mode="horizontal"
@@ -11,35 +12,23 @@
             background-color="#545c64"
             text-color="#d1d1d1"
             active-text-color="#c7000b">
-      <el-menu-item index="1">
+      <el-menu-item index="I01" route="/home">
         <i class="el-icon-monitor h-menu-icon"></i>
         <span>首页</span>
       </el-menu-item>
-      <el-menu-item index="2">
+      <el-menu-item index="M02" route="/large">
         <i class="el-icon-document-copy h-menu-icon"></i>
         <span>大额监控</span>
       </el-menu-item>
-      <el-menu-item index="3">
+      <el-menu-item index="M03" route="/suspicious">
         <i class="el-icon-search h-menu-icon"></i>
         <span>可疑监控</span>
       </el-menu-item>
-      <el-menu-item index="4">
+      <el-menu-item index="M04" route="/classify">
         <i class="el-icon-user h-menu-icon"></i>
-        <span>客户风险分类</span>
+        <span>客户分类</span>
       </el-menu-item>
-      <el-submenu index="6">
-        <template slot="title">智能模型训练平台</template>
-        <el-menu-item index="6-1">选项1</el-menu-item>
-        <el-menu-item index="6-2">选项2</el-menu-item>
-        <el-menu-item index="6-3">选项3</el-menu-item>
-        <el-submenu index="6-4">
-          <template slot="title">选项4</template>
-          <el-menu-item index="6-4-1">选项1</el-menu-item>
-          <el-menu-item index="6-4-2">选项2</el-menu-item>
-          <el-menu-item index="6-4-3">选项3</el-menu-item>
-        </el-submenu>
-      </el-submenu>
-      <el-menu-item index="5">
+      <el-menu-item index="M05" route="/sys">
         <i class="el-icon-setting h-menu-icon"></i>
         <span>系统管理</span>
       </el-menu-item>

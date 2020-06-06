@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-menu
-            default-active="2"
+            :default-active="currentActive"
             class="el-menu-vertical-demo"
             @open="handleOpen"
             @close="handleClose"
@@ -27,7 +27,19 @@
     },
     data() {
       return {
-        menuData: []
+
+      }
+    },
+    computed: {
+      menuData() {
+        return this.$store.state.menus.filter(menu => {
+          return menu.url === '/' + this.$route.path.match(/\/(\S*)\//)[1]
+        })[0].children
+      },
+      currentActive() {
+        return this.menuData.filter(menu => {
+          return menu.url === this.$route.path
+        })[0].id
       }
     },
     methods: {

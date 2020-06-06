@@ -1,66 +1,89 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '../views/modules/Home.vue'
 import NProgress from 'nprogress'
 import Login from "../views/Login";
 import Layout from "../views/Layout";
-import Module from "../views/Module";
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Index',
-    component: Login
+    redirect: '/home',
   },
   {
-    path: '/login',
-    name: 'Login',
-    component: Login
-  },
-  {
-    path: '/layout',
+    path: '/home',
     component: Layout,
     children: [
       {
         path: '',
         component: Home
+      }
+    ]
+  },
+  {
+    path: '/login',
+    component: Login
+  },
+  {
+    path: '/large',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        redirect: 'query',
       },
       {
-        path: 'home',
-        name: 'Home',
-        component: Home
+        path: 'query',
+        component: () => import(/* webpackChunkName: "large_query" */ '../views/modules/large/Query.vue'),
       },
       {
-        path: 'module',
-        component: Module,
-        children: [
-          {
-            path: 'about',
-            name: 'About',
-            // route level code-splitting
-            // this generates a separate chunk (about.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () => import(/* webpackChunkName: "about" */ '../views/modules/About.vue')
-          },
-          {
-            path: 'user_mng',
-            name: 'UserMng',
-            // route level code-splitting
-            // this generates a separate chunk (about.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () => import(/* webpackChunkName: "user_mng" */ '../views/modules/system_mng/UserMng.vue'),
-          },
-          {
-            path: 'menu_mng',
-            name: 'MenuMng',
-            // route level code-splitting
-            // this generates a separate chunk (about.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () => import(/* webpackChunkName: "menu_mng" */ '../views/modules/system_mng/MenuMng.vue'),
-          },
-        ]
+        path: 'add',
+        component: () => import(/* webpackChunkName: "large_add" */ '../views/modules/large/Add.vue'),
+      },
+    ]
+  },
+  {
+    path: '/suspicious',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        redirect: 'query',
+      },
+      {
+        path: 'query',
+        component: () => import(/* webpackChunkName: "suspicious_query" */ '../views/modules/suspicious/Query.vue'),
+      },
+      {
+        path: 'audit',
+        component: () => import(/* webpackChunkName: "suspicious_add" */ '../views/modules/suspicious/Audit.vue'),
+      },
+    ]
+  },
+  {
+    path: '/classify',
+    component: Layout,
+  },
+  {
+    path: '/sys',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        redirect: 'user_mng',
+      },
+      {
+        path: 'user_mng',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "user_mng" */ '../views/modules/system_mng/UserMng.vue'),
+      },
+      {
+        path: 'menu_mng',
+        component: () => import(/* webpackChunkName: "menu_mng" */ '../views/modules/system_mng/MenuMng.vue'),
       },
     ]
   }
