@@ -3,7 +3,7 @@
     <el-header class="app-header">
       <Header title="管理系统"/>
     </el-header>
-    <transition v-if="$route.path === '/home'" name="fade" mode="out-in">
+    <transition v-if="$route.path === '/404' || $route.path === '/home'" name="fade" mode="out-in">
       <router-view></router-view>
     </transition>
     <transition v-else name="fade" mode="out-in">

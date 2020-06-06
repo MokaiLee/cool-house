@@ -4,6 +4,7 @@ import Home from '../views/modules/Home.vue'
 import NProgress from 'nprogress'
 import Login from "../views/Login";
 import Layout from "../views/Layout";
+import NotFound from "../views/modules/NotFound"
 
 Vue.use(VueRouter)
 
@@ -13,8 +14,24 @@ const routes = [
     redirect: '/home',
   },
   {
+    path: '/404',
+    component:Layout,
+    meta: {
+      noAside: true
+    },
+    children:[
+      {
+        path:'',
+        component: NotFound
+      }
+    ]
+  },
+  {
     path: '/home',
     component: Layout,
+    meta: {
+      noAside: true
+    },
     children: [
       {
         path: '',
@@ -65,6 +82,9 @@ const routes = [
   {
     path: '/classify',
     component: Layout,
+    meta: {
+      noAside: true
+    },
   },
   {
     path: '/sys',
@@ -86,6 +106,10 @@ const routes = [
         component: () => import(/* webpackChunkName: "menu_mng" */ '../views/modules/system_mng/MenuMng.vue'),
       },
     ]
+  },
+  {
+    path: '*',
+    redirect: '/404'
   }
 ]
 
