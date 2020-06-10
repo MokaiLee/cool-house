@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-header class="app-header">
-      <Header title="管理系统"/>
+      <Header title="Kool House"/>
     </el-header>
     <transition v-if="$route.path === '/home'" name="fade" mode="out-in">
       <router-view></router-view>
