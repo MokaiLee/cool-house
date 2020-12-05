@@ -1,7 +1,7 @@
 <template>
   <div :class="asideAvailable ? 'layout-container' : 'layout-container-nob-breadcrumb'">
     <div class="app-header">
-      <Header title="管理系统"/>
+      <Header title="KooL-House"/>
     </div>
     <transition v-if="asideAvailable"  name="fade" mode="out-in">
       <div>
