@@ -1,15 +1,19 @@
 <template>
   <el-breadcrumb class="my-breadcrumb" separator-class="el-icon-arrow-right">
-    <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-    <el-breadcrumb-item :to="{ path: '/about' }">关于</el-breadcrumb-item>
-    <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-    <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+    <transition-group name="breadcrumb">
+      <el-breadcrumb-item v-for="route in routeList" :key="route.path">{{route.meta.title}}</el-breadcrumb-item>
+    </transition-group>
   </el-breadcrumb>
 </template>
 
 <script>
   export default {
-    name: "Breadcrumb"
+    name: "Breadcrumb",
+    computed: {
+      routeList() {
+        return this.$route.matched.filter(route => route.meta.title)
+      }
+    }
   }
 </script>
 

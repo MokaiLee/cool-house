@@ -22,7 +22,7 @@
   import img_404_cloud from '../../assets/404/404_cloud.png'
 
   export default {
-    name: "404",
+    name: "NotFound",
     data() {
       return {
         img_404,

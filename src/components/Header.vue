@@ -5,32 +5,16 @@
     </div>
     <el-menu
             router
-            :default-active="activeIndex2"
+            :default-active="currentActive"
             class="el-menu-demo"
             mode="horizontal"
-            @select="handleSelect"
             background-color="#545c64"
             text-color="#d1d1d1"
-            active-text-color="#c7000b">
-      <el-menu-item index="I01" route="/home">
-        <i class="el-icon-monitor h-menu-icon"></i>
-        <span>首页</span>
-      </el-menu-item>
-      <el-menu-item index="M02" route="/large">
-        <i class="el-icon-document-copy h-menu-icon"></i>
-        <span>大额监控</span>
-      </el-menu-item>
-      <el-menu-item index="M03" route="/suspicious">
-        <i class="el-icon-search h-menu-icon"></i>
-        <span>可疑监控</span>
-      </el-menu-item>
-      <el-menu-item index="M04" route="/classify">
-        <i class="el-icon-user h-menu-icon"></i>
-        <span>客户分类</span>
-      </el-menu-item>
-      <el-menu-item index="M05" route="/sys">
-        <i class="el-icon-setting h-menu-icon"></i>
-        <span>系统管理</span>
+            active-text-color="#c7000b"
+            @select="handleSelect">
+      <el-menu-item v-for="menu in headerMenuData" :index="menu.path" :route="menu.path" :key="menu.path">
+        <i v-if="menu.icon" :class="'el-icon-' + menu.icon" class="h-menu-icon"></i>
+        <span>{{menu.name}}</span>
       </el-menu-item>
     </el-menu>
     <div class="user-info">
@@ -60,8 +44,15 @@
     },
     data() {
       return {
-        activeIndex2: '1',
         userName: '管理员'
+      }
+    },
+    computed: {
+      headerMenuData() {
+        return this.$store.state.menus.filter(menu => menu.show)
+      },
+      currentActive() {
+        return '/' + this.$route.path.match(/[0-9a-zA-Z_]+/)[0]
       }
     },
     methods: {
@@ -73,15 +64,11 @@
 </script>
 
 <style lang="scss" scoped>
+
   .header-wrapper {
-    color: #d1d1d1;
     height: 60px;
     display: flex;
     flex-direction: row;
-  }
-
-  .h-menu-icon {
-    color: #d1d1d1;
   }
 
   .logo {
@@ -105,9 +92,5 @@
     i {
       font-weight: bold;
     }
-  }
-
-  .user-logout:hover {
-    color: #c7000b;
   }
 </style>

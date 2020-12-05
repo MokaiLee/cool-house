@@ -6,11 +6,11 @@
             @open="handleOpen"
             @close="handleClose"
             background-color="#d1d1d1"
-            text-color="#4b4c4e"
+            text-color="#545c64"
             active-text-color="#c7000b"
             :collapse="isCollapse"
             router>
-      <menu-item v-for="menu in menuData" :data="menu" :key="menu.id"></menu-item>
+      <menu-item v-for="menu in asideMenuData" :data="menu" :key="menu.path" :is-collapse="isCollapse"></menu-item>
     </el-menu>
   </div>
 </template>
@@ -31,15 +31,12 @@
       }
     },
     computed: {
-      menuData() {
-        return this.$store.state.menus.filter(menu => {
-          return menu.url === '/' + this.$route.path.match(/\/(\S*)\//)[1]
-        })[0].children
+      asideMenuData() {
+        let tmpArr = this.$store.state.menus.filter(menu => menu.path === '/' + this.$route.path.match(/[0-9a-zA-Z_]+/)[0])[0]
+        return tmpArr.children ? tmpArr.children : []
       },
       currentActive() {
-        return this.menuData.filter(menu => {
-          return menu.url === this.$route.path
-        })[0].id
+        return this.$route.path
       }
     },
     methods: {

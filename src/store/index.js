@@ -7,98 +7,135 @@ export default new Vuex.Store({
   state: {
     menus: [
       {
-        id: 'I01',
+        id: 'M01',
         name: '首页',
-        url: '/home',
-        meta: {
-          index: true,
-          icon: ''
-        }
+        path: '/home',
+        show: true,
+        icon: 'monitor'
       },
       {
         id: 'M02',
         name: '大额监控',
-        url: '/large',
-        meta: {
-          icon: ''
-        },
+        path: '/large',
+        show: true,
+        icon: 'document-copy',
         children: [
           {
             id: 'M0201',
             name: '大额查询',
-            url: '/large/query',
-            meta: {
-              icon: ''
-            },
+            path: '/large/query',
+            show: true,
+            icon: 'document-copy',
           },
           {
             id: 'M0202',
             name: '大额新增',
-            url: '/large/add',
-            meta: {
-              icon: ''
-            },
+            path: '/large/add',
+            show: false,
+            icon: 'document-copy',
           },
         ]
       },
       {
         id: 'M03',
         name: '可疑监控',
-        url: '/suspicious',
-        meta: {
-          icon: ''
-        },
+        path: '/suspicious',
+        show: true,
+        icon: 'search',
         children: [
           {
             id: 'M0301',
             name: '可疑查询',
-            url: '/suspicious/query',
-            meta: {
-              icon: ''
-            },
+            path: '/suspicious/query',
+            show: true,
+            icon: 'search',
           },
           {
             id: 'M0302',
             name: '可疑审核',
-            url: '/suspicious/audit',
-            meta: {
-              icon: ''
-            },
+            path: '/suspicious/audit',
+            show: true,
+            icon: 'search',
           },
         ]
       },
       {
         id: 'M04',
         name: '客户分类',
-        url: '/classify',
-        meta: {
-          icon: ''
-        },
-        children: []
+        path: '/classify',
+        show: true,
+        icon: 'user',
+        children: [
+          {
+            id: 'M0302',
+            name: '人工复评',
+            path: '/classify/judge',
+            show: true,
+            icon: 'user',
+          },
+        ]
       },
       {
         id: 'M05',
         name: '系统管理',
-        url: '/sys',
-        meta: {
-          icon: ''
-        },
+        path: '/sys',
+        show: true,
+        icon: 'setting',
         children: [
           {
             id: 'M0501',
             name: '用户管理',
-            url: '/sys/user_mng',
-            meta: {
-              icon: ''
-            },
+            path: '/sys/user_mng',
+            show: true,
+            icon: 'setting',
+            children: [
+              {
+                id: 'M0501',
+                name: '用户维护',
+                path: '/sys/user_mng',
+                show: true,
+                icon: 'setting',
+              },
+              {
+                id: 'M0502',
+                name: '角色维护',
+                path: '/sys/role_mng',
+                show: true,
+                icon: 'setting',
+              },
+            ]
           },
           {
             id: 'M0502',
             name: '菜单管理',
-            url: '/sys/menu_mng',
-            meta: {
-              icon: ''
-            },
+            path: '/sys/menu_mng',
+            show: true,
+            icon: 'setting',
+          },
+          {
+            id: 'M0502',
+            name: '参数管理',
+            path: '/sys/param_mng',
+            show: true,
+            icon: 'setting',
+            children: [
+              {
+                id: 'M0501',
+                name: '比例参数管理',
+                path: '/sys/portion_param_mng',
+                show: true,
+                icon: 'setting',
+                children: [
+                  {
+                    id: 'M0501',
+                    name: '比例参数维护',
+                    path: '/sys/portion_param_update',
+                    show: true,
+                    icon: 'setting',
+                  },
+                ]
+              },
+            ]
           },
         ]
       },

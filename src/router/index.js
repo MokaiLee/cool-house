@@ -8,17 +8,122 @@ import NotFound from "../views/modules/NotFound"
 
 Vue.use(VueRouter)
 
+const asyncRoutes = [
+  {
+    path: '/large',
+    component: Layout,
+    meta: {
+      title: '大额监控'
+    },
+    children: [
+      {
+        path: '',
+        redirect: 'query',
+      },
+      {
+        path: 'query',
+        meta: {
+          title: '大额监控查询'
+        },
+        component: () => import(/* webpackChunkName: "large_query" */ '../views/modules/large/Query.vue'),
+      },
+      {
+        path: 'add',
+        meta: {
+          title: '大额监控新增'
+        },
+        component: () => import(/* webpackChunkName: "large_add" */ '../views/modules/large/Add.vue'),
+      },
+    ]
+  },
+  {
+    path: '/suspicious',
+    component: Layout,
+    meta: {
+      title: '可疑监控'
+    },
+    children: [
+      {
+        path: '',
+        redirect: 'query',
+      },
+      {
+        path: 'query',
+        meta: {
+          title: '可疑监控查询'
+        },
+        component: () => import(/* webpackChunkName: "suspicious_query" */ '../views/modules/suspicious/Query.vue'),
+      },
+      {
+        path: 'audit',
+        meta: {
+          title: '可疑监控审核'
+        },
+        component: () => import(/* webpackChunkName: "suspicious_add" */ '../views/modules/suspicious/Audit.vue'),
+      },
+    ]
+  },
+  {
+    path: '/classify',
+    component: Layout,
+    meta: {
+      title: '客户分类'
+    },
+    children: [
+      {
+        path: '',
+        redirect: 'judge',
+      },
+      {
+        path: 'judge',
+        meta: {
+          title: '人工复评'
+        },
+        component: () => import(/* webpackChunkName: "classify_judge" */ '../views/modules/classify/Judge.vue'),
+      },
+    ]
+  },
+  {
+    path: '/sys',
+    component: Layout,
+    meta: {
+      title: '系统管理'
+    },
+    children: [
+      {
+        path: '',
+        redirect: 'user_mng',
+      },
+      {
+        path: 'user_mng',
+        meta: {
+          title: '用户管理'
+        },
+        component: () => import(/* webpackChunkName: "user_mng" */ '../views/modules/system_mng/UserMng.vue'),
+      },
+      {
+        path: 'menu_mng',
+        meta: {
+          title: '菜单管理'
+        },
+        component: () => import(/* webpackChunkName: "menu_mng" */ '../views/modules/system_mng/MenuMng.vue'),
+      },
+    ]
+  },
+]
+
 const routes = [
   {
     path: '/',
     redirect: '/home',
   },
   {
+    path: '/login',
+    component: Login
+  },
+  {
     path: '/404',
     component:Layout,
-    meta: {
-      noAside: true
-    },
     children:[
       {
         path:'',
@@ -29,82 +134,11 @@ const routes = [
   {
     path: '/home',
     component: Layout,
-    meta: {
-      noAside: true
-    },
     children: [
       {
         path: '',
         component: Home
       }
-    ]
-  },
-  {
-    path: '/login',
-    component: Login
-  },
-  {
-    path: '/large',
-    component: Layout,
-    children: [
-      {
-        path: '',
-        redirect: 'query',
-      },
-      {
-        path: 'query',
-        component: () => import(/* webpackChunkName: "large_query" */ '../views/modules/large/Query.vue'),
-      },
-      {
-        path: 'add',
-        component: () => import(/* webpackChunkName: "large_add" */ '../views/modules/large/Add.vue'),
-      },
-    ]
-  },
-  {
-    path: '/suspicious',
-    component: Layout,
-    children: [
-      {
-        path: '',
-        redirect: 'query',
-      },
-      {
-        path: 'query',
-        component: () => import(/* webpackChunkName: "suspicious_query" */ '../views/modules/suspicious/Query.vue'),
-      },
-      {
-        path: 'audit',
-        component: () => import(/* webpackChunkName: "suspicious_add" */ '../views/modules/suspicious/Audit.vue'),
-      },
-    ]
-  },
-  {
-    path: '/classify',
-    component: Layout,
-    meta: {
-      noAside: true
-    },
-  },
-  {
-    path: '/sys',
-    component: Layout,
-    children: [
-      {
-        path: '',
-        redirect: 'user_mng',
-      },
-      {
-        path: 'user_mng',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "user_mng" */ '../views/modules/system_mng/UserMng.vue'),
-      },
-      {
-        path: 'menu_mng',
-        component: () => import(/* webpackChunkName: "menu_mng" */ '../views/modules/system_mng/MenuMng.vue'),
-      },
     ]
   },
   {
@@ -125,5 +159,7 @@ router.beforeEach((to,from,next) => {
 router.afterEach(() => {
   NProgress.done() // 结束Progress
 })
+
+router.addRoutes(asyncRoutes)
 
 export default router

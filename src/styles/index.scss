@@ -1,8 +1,100 @@
-@import './element-customize.css';
 @import "transition";
 @import "nprogress.css";
 
+$theme-color: #c7000b;
+$header-color: #d1d1d1;
+$header-background-color: #545c64;
+$aside-color: #545c64;
+$aside-background-color: #d1d1d1;
+$main-background-color: #ffffff;
+
 html,body {
   margin: 0;
-  height: 100%;
 }
+
+.app-header {
+  background-color: $header-background-color!important;
+  color: $header-color!important;
+  .user-logout,.user-name {
+    :hover {
+      color: $theme-color !important;
+    }
+  }
+}
+
+.app-aside {
+  background-color: $aside-background-color!important;
+  color: $aside-color!important;
+}
+
+.app-breadcrumb {
+  box-shadow: 0 1px 3px 0 $aside-background-color;
+  background-color: $main-background-color;
+}
+
+.app-collapse:hover {
+  background-color: $aside-background-color;
+}
+
+//菜单背景色
+.el-menu {
+  //border-right: solid 1px $aside-background-color!important;
+  border-right: 0;
+  list-style: none;
+  position: relative;
+  margin: 0;
+  padding-left: 0;
+}
+
+.el-menu.el-menu--horizontal{
+  border-bottom: 0;
+}
+
+//左侧菜单图标颜色
+.el-menu-item i {
+  color: $aside-color;
+}
+
+.el-submenu__title i {
+  color: $aside-color;
+}
+
+//顶部菜单图标颜色
+.el-menu--horizontal {
+  .el-menu-item {
+    i {
+      color: $header-color;
+    }
+  }
+  .is-active {
+    i {
+      color: $theme-color;
+    }
+  }
+}
+
+//隐藏左侧菜单折叠时的文字
+.el-menu--collapse > div > .el-submenu > .el-submenu__title span {
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  visibility: hidden;
+  display: inline-block;
+}
+.el-menu--collapse > div > .el-menu-item > span {
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  visibility: hidden;
+  display: inline-block;
+}
+.el-menu--collapse > div > .el-submenu > .el-submenu__title .el-submenu__icon-arrow {
+  display: none;
+}
+
+/*.el-table__header{
+  width: 100%!important;
+}
+.el-table__body{
+  width: 100%!important;
+}*/
