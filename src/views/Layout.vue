@@ -5,16 +5,16 @@
     </div>
     <transition v-if="asideAvailable"  name="fade" mode="out-in">
       <div>
-        <div class="app-aside" :style="'width: ' + asideWidth + ';'">
+        <div class="app-aside" :style="asyncWidth">
           <Aside :is-collapse="isCollapse"></Aside>
         </div>
-        <div class="app-breadcrumb" :style="'margin-left: ' + asideWidth + ';'">
-          <div class="app-collapse" @click="isCollapse = !isCollapse">
+        <div class="app-breadcrumb" :style="asyncMarginLeft">
+          <div class="app-collapse" @click="toggleCollapse">
             <i :class="[isCollapse ? 'el-icon-s-unfold' : 'el-icon-s-fold']"></i>
           </div>
           <Breadcrumb></Breadcrumb>
         </div>
-        <div class="app-main" :style="'margin-left: ' + asideWidth + ';'">
+        <div class="app-main" :style="asyncMarginLeft">
           <transition name="fade" mode="out-in">
             <router-view></router-view>
           </transition>
@@ -31,6 +31,7 @@
   import Header from "../components/Header";
   import Aside from "../components/Aside";
   import Breadcrumb from "../components/Breadcrumb";
+  import {mapMutations, mapState} from "vuex";
 
   export default {
     name: "Layout",
@@ -41,33 +42,43 @@
     },
     data() {
       return {
-        isCollapse: false
+
       }
     },
     computed: {
-      asideWidth() {
-        return this.isCollapse ? '64px' : '220px'
+      ...mapState(['isCollapse']),
+      asyncWidth() {
+        return {width: this.isCollapse ? '64px' : '220px'}
+      },
+      asyncMarginLeft() {
+        return {marginLeft: this.isCollapse ? '64px' : '220px'}
       },
       asideAvailable() {
         let tmpArr = this.$store.state.menus.filter(menu => menu.path === '/' + this.$route.path.match(/[0-9a-zA-Z_]+/)[0])[0]
-        if(tmpArr){
-          if (tmpArr.children){
+        if (tmpArr) {
+          if (tmpArr.children) {
             return tmpArr.children.length > 0
           }
         }
         return false
       }
     },
+    methods: {
+      ...mapMutations(['toggleCollapse'])
+    }
   }
 </script>
 
 <style scoped>
+
   .layout-container {
     padding-top: 100px;
+    padding-bottom: 70px;
   }
 
   .layout-container-nob-breadcrumb {
     padding-top: 60px;
+    padding-bottom: 70px;
   }
 
   .app-header {
@@ -98,8 +109,10 @@
   }
 
   .app-main {
-    transition: margin-left 0.28s;
     padding: 25px;
+    height: 100%;
+    min-width: 1000px;
+    transition: margin-left 0.28s;
   }
 
   .app-collapse {

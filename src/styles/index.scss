@@ -13,6 +13,7 @@ html,body {
 }
 
 .app-header {
+  z-index: 9999;
   background-color: $header-background-color!important;
   color: $header-color!important;
   .user-logout,.user-name {
@@ -23,11 +24,13 @@ html,body {
 }
 
 .app-aside {
+  z-index: 9999;
   background-color: $aside-background-color!important;
   color: $aside-color!important;
 }
 
 .app-breadcrumb {
+  z-index: 9999;
   box-shadow: 0 1px 3px 0 $aside-background-color;
   background-color: $main-background-color;
 }

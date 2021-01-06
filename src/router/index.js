@@ -156,8 +156,9 @@ router.beforeEach((to,from,next) => {
   next()
 })
 
-router.afterEach(() => {
+router.afterEach((to) => {
   NProgress.done() // 结束Progress
+  setTimeout(() => {console.log('前往了 ' + to.path)}, 1000)
 })
 
 router.addRoutes(asyncRoutes)

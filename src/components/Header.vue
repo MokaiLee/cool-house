@@ -22,7 +22,9 @@
         <el-avatar size="small" icon="el-icon-user-solid"></el-avatar>
       </div>
       <div class="user-name user-info-item">
-        <span>{{userName}}</span>
+        <el-tooltip :disabled="userName.length < 6" :content="userName">
+          <span>{{userName.length > 5 ? userName.substring(0,5) + '...' : userName}}</span>
+        </el-tooltip>
       </div>
       <div class="user-logout user-info-item">
         <el-tooltip content="退出">
@@ -44,7 +46,7 @@
     },
     data() {
       return {
-        userName: '管理员'
+        userName: '系统管理员二'
       }
     },
     computed: {
@@ -66,6 +68,8 @@
 <style lang="scss" scoped>
 
   .header-wrapper {
+    /*min-width: calc(522px + 214px + 200px);*/
+    min-width: 936px;
     height: 60px;
     display: flex;
     flex-direction: row;

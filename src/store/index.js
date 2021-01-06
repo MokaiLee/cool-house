@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    isCollapse: false,
     menus: [
       {
         id: 'M01',
@@ -141,7 +142,11 @@ export default new Vuex.Store({
       },
     ],
   },
-  mutations: {},
+  mutations: {
+    toggleCollapse(state){
+      state.isCollapse = !state.isCollapse
+    }
+  },
   actions: {},
   modules: {}
 })

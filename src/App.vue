@@ -5,12 +5,7 @@
 <script>
 
   export default {
-    name: 'app',
-    data() {
-
-    },
-    mounted() {
-    }
+    name: 'app'
   }
 </script>
 

@@ -60,12 +60,18 @@
               label="地址">
       </el-table-column>
     </el-table>
+    <Footer>
+      <el-button type="danger" plain @click="onReject">退回</el-button>
+      <el-button type="primary">通过</el-button>
+    </Footer>
   </div>
 </template>
 
 <script>
+  import Footer from "@/components/Footer";
   export default {
     name: "UserMng",
+    components: {Footer},
     data() {
       return {
         form: {
@@ -98,8 +104,7 @@
       }
     },
     created() {
-      console.log(document.documentElement.clientWidth)
-      console.log(document.body.clientWidth)
+
     },
     mounted() {
 
@@ -107,6 +112,9 @@
     methods: {
       onSubmit() {
         console.log('submit!');
+      },
+      onReject(){
+        console.log('退回')
       }
     }
   }
