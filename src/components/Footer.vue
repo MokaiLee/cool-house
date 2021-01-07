@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import {mapMutations, mapState} from "vuex";
+import {mapGetters, mapMutations} from "vuex";
 
 export default {
   name: "Footer",
   computed: {
-    ...mapState(['isCollapse']),
+    ...mapGetters(['isCollapse']),
     asyncStyle(){
       return {
         left: this.isCollapse ? '0' : '220px',

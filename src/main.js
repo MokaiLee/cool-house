@@ -6,8 +6,11 @@ import './plugins/element.js'
 import './styles/index.scss'
 import "core-js/stable";
 import "regenerator-runtime/runtime";
+import api from "@/utils/api";
 
 Vue.config.productionTip = false
+
+Vue.prototype.api = api
 
 new Vue({
   router,

@@ -22,6 +22,7 @@
 
 <script>
 import MenuItem from "./MenuItem";
+import {mapGetters} from "vuex";
 
 export default {
   name: "Aside",
@@ -35,8 +36,9 @@ export default {
     return {}
   },
   computed: {
+    ...mapGetters(['menus']),
     asideMenuData() {
-      let tmpArr = this.$store.state.menus.filter(menu => menu.path === '/' + this.$route.path.match(/[0-9a-zA-Z_]+/)[0])[0]
+      let tmpArr = this.menus.filter(menu => menu.path === '/' + this.$route.path.match(/[0-9a-zA-Z_]+/)[0])[0]
       return tmpArr.children ? tmpArr.children : []
     },
     currentActive() {

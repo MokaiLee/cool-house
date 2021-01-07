@@ -31,7 +31,7 @@
 import Header from "../components/Header";
 import Aside from "../components/Aside";
 import Breadcrumb from "../components/Breadcrumb";
-import {mapMutations, mapState} from "vuex";
+import {mapGetters, mapMutations} from "vuex";
 
 export default {
   name: "Layout",
@@ -44,7 +44,7 @@ export default {
     return {}
   },
   computed: {
-    ...mapState(['isCollapse', 'footerAvailable']),
+    ...mapGetters(['isCollapse', 'footerAvailable', 'menus']),
     asyncWidth() {
       return {width: this.isCollapse ? '64px' : '220px'}
     },
@@ -58,7 +58,7 @@ export default {
       return {paddingBottom: this.footerAvailable ? '70px' : '0'}
     },
     asideAvailable() {
-      let tmpArr = this.$store.state.menus.filter(menu => menu.path === '/' + this.$route.path.match(/[0-9a-zA-Z_]+/)[0])[0]
+      let tmpArr = this.menus.filter(menu => menu.path === '/' + this.$route.path.match(/[0-9a-zA-Z_]+/)[0])[0]
       if (tmpArr) {
         if (tmpArr.children) {
           return tmpArr.children.length > 0
@@ -66,6 +66,9 @@ export default {
       }
       return false
     }
+  },
+  created() {
+    this.api({url:'/test'}).then(data => console.log(data)).catch(err => console.log(err.message))
   },
   methods: {
     ...mapMutations(['toggleCollapse'])
