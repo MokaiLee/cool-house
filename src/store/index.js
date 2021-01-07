@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     isCollapse: false,
+    footerAvailable: false,
     menus: [
       {
         id: 'M01',
@@ -143,8 +144,11 @@ export default new Vuex.Store({
     ],
   },
   mutations: {
-    toggleCollapse(state){
+    toggleCollapse(state) {
       state.isCollapse = !state.isCollapse
+    },
+    showFooter(state, payload) {
+      state.footerAvailable = payload
     }
   },
   actions: {},

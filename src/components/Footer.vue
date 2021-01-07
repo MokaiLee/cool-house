@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import {mapState} from "vuex";
+import {mapMutations, mapState} from "vuex";
 
 export default {
   name: "Footer",
@@ -17,6 +17,17 @@ export default {
         width: this.isCollapse ? '100%' : 'calc(100% - 220px)',
       }
     }
+  },
+  created() {
+    console.log('create footer')
+    this.showFooter(true)
+  },
+  destroyed() {
+    console.log('destroy footer')
+    this.showFooter(false)
+  },
+  methods: {
+    ...mapMutations(['showFooter'])
   }
 }
 </script>
